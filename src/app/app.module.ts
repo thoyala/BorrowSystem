@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule} from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './site/navbar/navbar.component';
@@ -20,6 +21,9 @@ import { CrudEquipComponent } from './admin/crud-equip/crud-equip.component';
 import { ApproveEquipComponent } from './admin/approve-equip/approve-equip.component';
 import { ReturnEquipComponent } from './admin/return-equip/return-equip.component';
 import { ShowBorrowComponent } from './admin/show-borrow/show-borrow.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { BorrowEquipComponent } from './user/borrow-equip/borrow-equip.component';
+import { BorrowDetailComponent } from './user/borrow-detail/borrow-detail.component';
 
 @NgModule({
   declarations: [
@@ -40,11 +44,16 @@ import { ShowBorrowComponent } from './admin/show-borrow/show-borrow.component';
     CrudEquipComponent,
     ApproveEquipComponent,
     ReturnEquipComponent,
-    ShowBorrowComponent
+    ShowBorrowComponent,
+    EditUserComponent,
+    BorrowEquipComponent,
+    BorrowDetailComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

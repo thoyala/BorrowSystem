@@ -7,26 +7,31 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form (ngSubmit)="onRegister()" [noValidate]="false">
             <div class="mb-3">
               <label class="form-label">ชื่อ-สกุล</label>
-              <input type="text" class="form-control">
+              <input type="text " class="form-control"
+              name="name" [(ngModel)]="name">              
             </div>
             <div class="mb-3">
               <label class="form-label">ที่อยู่</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"
+              name="address" [(ngModel)]="address">
             </div>
             <div class="mb-3">
               <label class="form-label">โทรศัพท์</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"
+              name="telephone" [(ngModel)]="telephone" required>
             </div>
             <div class="mb-3">
               <label class="form-label">ชื่อผู้ใช้งาน</label>
-              <input type="text" class="form-control">
+              <input type="text" class="form-control"
+              name="username" [(ngModel)]="username" required>
             </div>
             <div class="mb-3">
               <label class="form-label">รหัสผ่าน</label>
-              <input type="password" class="form-control" >
+              <input type="password" class="form-control" 
+              name="password" [(ngModel)]="password">
             </div>
             
             <button type="submit" class="btn btn-primary">บันทึก</button>

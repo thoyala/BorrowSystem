@@ -13,6 +13,9 @@ import { CrudUserComponent } from './admin/crud-user/crud-user.component';
 import { ApproveEquipComponent } from './admin/approve-equip/approve-equip.component';
 import { ReturnEquipComponent } from './admin/return-equip/return-equip.component';
 import { ShowBorrowComponent } from './admin/show-borrow/show-borrow.component';
+import { EditUserComponent } from './user/edit-user/edit-user.component';
+import { BorrowEquipComponent } from './user/borrow-equip/borrow-equip.component';
+import { BorrowDetailComponent } from './user/borrow-detail/borrow-detail.component';
 
 const routes: Routes = [
   {path: '' , component: SiteComponent,
@@ -32,7 +35,13 @@ const routes: Routes = [
       {path: 'show-borrow', component: ShowBorrowComponent},
     ]
 },
-  {path: 'user', component: UserMenuComponent}
+  {path: 'user', component: UserMenuComponent,
+    children:[
+      {path:'borrow-detail',component:BorrowDetailComponent},
+      {path: 'borrow-equip',component:BorrowEquipComponent},
+      {path: 'edit-user',component:EditUserComponent}
+    ]
+}
 ];
 
 @NgModule({

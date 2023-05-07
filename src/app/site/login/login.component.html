@@ -9,15 +9,17 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form>
+              <form (ngSubmit)="onLogin()" [noValidate]="false">
                 <div class="mb-3">
                   <label class="form-label">ชื่อผู้ใช้งาน</label>
-                  <input type="text" class="form-control">
+                  <input type="text" class="form-control"
+                  name="username" [(ngModel)]="username" required>
                   
                 </div>
                 <div class="mb-3">
                   <label class="form-label">รหัสผ่าน</label>
-                  <input type="password" class="form-control" >
+                  <input type="password" class="form-control" 
+                  name="password" [(ngModel)]="password" required>
                 </div>
                 
                 <button type="submit" class="btn btn-primary">เข้าระบบ</button>
