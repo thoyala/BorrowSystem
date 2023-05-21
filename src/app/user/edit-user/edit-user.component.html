@@ -5,32 +5,47 @@
     <div class="col-sm-4">
         <h3>แก้ไขข้อมูล</h3>
         <div class="card">
-            <img src="assets/images/noperson.jfif" class="card-img-top" alt="...">
+          <img
+          src="http://localhost/borrowsystem_api/images/users/{{userData.picture}}"
+          class="card-img-top"
+          alt="User Image" *ngIf="userData.picture!=''"
+        />
+        <img
+          src="assets/images/noperson.jfif"
+          class="card-img-top"
+          alt="User Image" *ngIf="userData
+          .picture==''"
+        />
             <div class="card-body">
-                <form>
+                <form (ngSubmit)="onEdit()">
                     <div class="mb-3">
                       <label class="form-label">รูปภาพใหม่</label>
                       <input type="file" class="form-control" >
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ชื่อสกุล</label>
-                        <input type="text" class="form-control" >
+                        <input type="text" class="form-control"
+                        name="name" [(ngModel)]="userData.name" >
                       </div>
                     <div class="mb-3">
                         <label class="form-label">ที่อยู่</label>
-                        <input type="text" class="form-control" >
+                        <input type="text" class="form-control" 
+                        name="address" [(ngModel)]="userData.address" >
                       </div>
                     <div class="mb-3">
                         <label class="form-label">โทรศัพท์</label>
-                        <input type="text" class="form-control" >
+                        <input type="text" class="form-control" 
+                        name="telephone" [(ngModel)]="userData.telephone" >
                       </div>
                     <div class="mb-3">
                       <label class="form-label">รหัสผ่านเดิม</label>
-                      <input type="text" class="form-control" >
+                      <input type="text" class="form-control" 
+                      name="password" [(ngModel)]="userData.password" >
                     </div>
                     <div class="mb-3">
                       <label class="form-label">รหัสผ่านใหม่</label>
-                      <input type="password" class="form-control" >
+                      <input type="password" class="form-control" 
+                      name="newpassword" [(ngModel)]="userData.newpassword" >
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>

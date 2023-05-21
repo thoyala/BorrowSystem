@@ -33,13 +33,19 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img
-            src="assets/dist/img/user2-160x160.jpg"
+            src="http://localhost/borrowsystem_api/images/users/{{userData.picture}}"
             class="img-circle elevation-2"
-            alt="User Image"
+            alt="User Image" *ngIf="userData.picture!=''"
+          />
+          <img
+            src="assets/images/noperson.jfif"
+            class="img-circle elevation-2"
+            alt="User Image" *ngIf="userData
+            .picture==''"
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{userData.name}}</a>
         </div>
       </div>
 

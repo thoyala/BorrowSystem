@@ -11,27 +11,32 @@
             <div class="mb-3">
               <label class="form-label">ชื่อ-สกุล</label>
               <input type="text " class="form-control"
-              name="name" [(ngModel)]="name">              
+              name="name" [(ngModel)]="model.name">              
             </div>
             <div class="mb-3">
               <label class="form-label">ที่อยู่</label>
               <input type="text" class="form-control"
-              name="address" [(ngModel)]="address">
+              name="address" [(ngModel)]="model.address">
             </div>
             <div class="mb-3">
               <label class="form-label">โทรศัพท์</label>
               <input type="text" class="form-control"
-              name="telephone" [(ngModel)]="telephone" required>
+              name="telephone" [(ngModel)]="model.telephone" required>
             </div>
             <div class="mb-3">
               <label class="form-label">ชื่อผู้ใช้งาน</label>
               <input type="text" class="form-control"
-              name="username" [(ngModel)]="username" required>
+              name="username" [(ngModel)]="model.username" required>
             </div>
             <div class="mb-3">
               <label class="form-label">รหัสผ่าน</label>
               <input type="password" class="form-control" 
-              name="password" [(ngModel)]="password">
+              name="password" [(ngModel)]="model.password">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">รูปภาพ</label>
+              <input type="file" class="form-control" 
+              (change)="onFileSelect($event)">
             </div>
             
             <button type="submit" class="btn btn-primary">บันทึก</button>

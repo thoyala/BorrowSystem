@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 declare const $:any;
 
 @Component({
@@ -13,19 +14,18 @@ export class LoginComponent {
   password ='';
 
   constructor(private router:Router,
-    private httpClient: HttpClient ){ 
+    private loginService: LoginService ){ 
 
   }
 data: any
-  onLogin(){
+  onLogin(): void{
     //ปิด loginMOdal
     $('#loginModal').modal('hide')
     // เรียก api ใช้งาน ใช้ HttpClientModule ทำงาน
-    const criteria= '?username='+this.username+'&password='+this.password
-    // console.log(criteria)
-    this.httpClient.get('http://localhost/borrowsystem_api/login.php'+criteria)
+    this.loginService.get(this.username,this.password)
       .subscribe(result=>{
         this.data=result
+        this.loginService.loginData=this.data
         if(this.data.status==='user')
           this.router.navigate(['user'])
         else if(this.data.status==='staff')
