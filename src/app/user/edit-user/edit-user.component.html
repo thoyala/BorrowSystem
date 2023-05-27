@@ -20,7 +20,8 @@
                 <form (ngSubmit)="onEdit()">
                     <div class="mb-3">
                       <label class="form-label">รูปภาพใหม่</label>
-                      <input type="file" class="form-control" >
+                      <input type="file" class="form-control"
+                      (change)="onSelectFile($event)" >
                     </div>
                     <div class="mb-3">
                         <label class="form-label">ชื่อสกุล</label>
@@ -40,7 +41,7 @@
                     <div class="mb-3">
                       <label class="form-label">รหัสผ่านเดิม</label>
                       <input type="text" class="form-control" 
-                      name="password" [(ngModel)]="userData.password" >
+                      name="password" [(ngModel)]="userData.password" readonly>
                     </div>
                     <div class="mb-3">
                       <label class="form-label">รหัสผ่านใหม่</label>

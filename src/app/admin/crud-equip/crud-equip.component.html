@@ -9,7 +9,7 @@
             <div class="col-sm-4"></div>
             <div class="col-sm-2">
               <a
-                href="#addEmployeeModal"
+                href="#addEquipModal"
                 class="btn btn-success"
                 data-bs-toggle="modal"
               >
@@ -29,11 +29,14 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td>แป้นพิมพ์</td>
-              <td>HP รุ่น C101</td>
-              <td>10</td>
+            <tr *ngFor="let item of data">
+              <td>
+                <img src="http://localhost/borrowsystem_api/images/equip/{{item.picture}}" alt="" *ngIf="item.picture!=''" width="100px" height="100px">
+                <img src="assets/images/images.png" alt="" *ngIf="item.picture==''">
+              </td>
+              <td>{{item.name}}/td>
+              <td>{{item.detail}}</td>
+              <td>{{item.qty}}</td>
               <td>
                 <a
                   href="#editEmployeeModal"
@@ -60,11 +63,11 @@
       </div>
     </div>
   </div>
-  <!-- Edit Modal HTML -->
-  <div id="addEmployeeModal" class="modal fade">
+  <!-- Add Modal HTML -->
+  <div id="addEquipModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form (ngSubmit)="onSave()"[noValidate]="false">
           <div class="modal-header">
             <h4 class="modal-title">เพิ่มข้อมูลอุปกรณ์</h4>
             <button
@@ -79,19 +82,23 @@
           <div class="modal-body">
             <div class="form-group">
               <label>ชื่ออุปกรณ์</label>
-              <input type="text" class="form-control" required />
+              <input type="text" class="form-control" required 
+              name="name" [(ngModel)]="model.name"/>
             </div>
             <div class="form-group">
               <label>รายละเอียด</label>
-              <textarea class="form-control" required></textarea>
+              <textarea class="form-control" required
+              name="detail" [(ngModel)]="model.detail"></textarea>
             </div>
             <div class="form-group">
               <label>จำนวน</label>
-              <input type="text" class="form-control" required />
+              <input type="text" class="form-control" required 
+              name="qty" [(ngModel)]="model.qty"/>
             </div>
             <div class="form-group">
-              <label>รูปภาพ</label>
-              <input type="file" name="equipPicture" class="form-control" required />
+              <label class="form-label">รูปภาพใหม่</label>
+              <input type="file" class="form-control"
+              (change)="onSelectFile($event)" >
             </div>
           </div>
           <div class="modal-footer">

@@ -30,10 +30,14 @@
         </thead>
         <tbody>
           <tr>
-            <td></td>
-            <td>สมศักดิ์ รักญาติ</td>
-            <td>กรุงเทพ</td>
-            <td>029091122</td>
+            <tr *ngFor="let item of data">
+              <td>
+                <img src="http://localhost/borrowsystem_api/images/users/{{item.picture}}" alt="" *ngIf="item.picture!=''" width="100px" height="100px">
+                <img src="assets/images/noperson.jfif" alt="" *ngIf="item.picture==''">
+              </td>
+              <td>{{item.name}}</td>
+              <td>{{item.address}}</td>
+              <td>{{item.telephone}}</td>
             <td>
               <a
                 href="#editEmployeeModal"
