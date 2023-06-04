@@ -18,6 +18,7 @@ export class EquipService {
     return this.httpClient.put(this.url,data)
   }
   delete(equipid:any){
-    return this.httpClient.delete(this.url + '?equipid' + equipid)
+    console.log(equipid)
+    return this.httpClient.delete(this.url + '?equipid=' + equipid)
   }
 }

@@ -31,28 +31,29 @@
           <tbody>
             <tr *ngFor="let item of data">
               <td>
-                <img src="http://localhost/borrowsystem_api/images/equip/{{item.picture}}" alt="" *ngIf="item.picture!=''" width="100px" height="100px">
-                <img src="assets/images/images.png" alt="" *ngIf="item.picture==''">
+                <img src="http://localhost/borrowsystem_api/images/equip/{{item.picture}}" alt="" *ngIf="item.picture!=''" width="auto" height="100px">
+                <img src="assets/images/images.png" alt="" *ngIf="item.picture==''" width="auto" height="100px">
               </td>
               <td>{{item.name}}/td>
               <td>{{item.detail}}</td>
               <td>{{item.qty}}</td>
               <td>
                 <a
-                  href="#editEmployeeModal"
+                  href="#editEquipModal"
                   class="edit text-success pr-3"
                   data-bs-toggle="modal"
                   ><i
                     class="fas fa-edit"
                     data-bs-toggle="tooltip"
                     title="Edit"
+                    (click)="onEdit(item)"
                   ></i
                 ></a>
                 <a
-                  href="#deleteEmployeeModal"
+                  href="#deleteEquipModal"
                   class="delete text-danger"
                   data-bs-toggle="modal"
-                  ><i class="fas fa-trash" data-bs-toggle="tooltip" title="Delete"
+                  ><i class="fas fa-trash" data-bs-toggle="tooltip" title="Delete" (click)="onDelete(item)"
                     >&#xE872;</i
                   ></a
                 >
@@ -115,10 +116,10 @@
     </div>
   </div>
   <!-- Edit Modal HTML -->
-  <div id="editEmployeeModal" class="modal fade">
+  <div id="editEquipModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form (ngSubmit)="onEditEquip()">
           <div class="modal-header">
             <h4 class="modal-title">แก้ไขข้อมูลอุปกรณ์</h4>
             <button
@@ -133,22 +134,28 @@
           <div class="modal-body">
             <div class="form-group">
               <label>ชื่ออุปกรณ์</label>
-              <input type="text" class="form-control" required />
+              <input type="text" class="form-control" required 
+              name="name" [(ngModel)]="model.name"/>
             </div>
             <div class="form-group">
               <label>รายละเอียด</label>
-              <textarea class="form-control" required></textarea>
+              <textarea class="form-control" required
+              name="detail" [(ngModel)]="model.detail"></textarea>
             </div>
             <div class="form-group">
               <label>จำนวน</label>
-              <input type="text" class="form-control" required />
+              <input type="text" class="form-control" required 
+              name="qty" [(ngModel)]="model.qty" />
             </div>
             <div class="form-group">
               <label>รูปภาพเดิม</label>
+              <img src="http://localhost/borrowsystem_api/images/equip/{{oldpicture}}" alt="" *ngIf="model.picture!=''" width="auto" height="100px">
+              <img src="assets/images/images.png" alt="" *ngIf="model.picture==''" width="auto" height="100px">
             </div>
             <div class="form-group">
-              <label>รูปภาพ</label>
-              <input type="file" name="equipPicture" class="form-control" required />
+              <label>รูปภาพ [คลิกเลือกถ้าต้องการเปลี่ยนภาพ]</label>
+              <input type="file" name="equipPicture" class="form-control" (change)="onEditFileSelect($event)" 
+               />
             </div>
           </div>
           <div class="modal-footer">
@@ -165,10 +172,10 @@
     </div>
   </div>
   <!-- Delete Modal HTML -->
-  <div id="deleteEmployeeModal" class="modal fade">
+  <div id="deleteEquipModal" class="modal fade">
     <div class="modal-dialog">
       <div class="modal-content">
-        <form>
+        <form (ngSubmit)="onDeleteEquip()">
           <div class="modal-header">
             <h4 class="modal-title">ลบข้อมูลอุปกรณ์</h4>
             <button
@@ -181,7 +188,7 @@
             </button>
           </div>
           <div class="modal-body">
-            <p>ต้องการลบรายการอุปกรณ์นี้ใช่หรือไม่ ?</p>
+            <p>ต้องการลบรายการอุปกรณ์ <span class="text-red">รหัส {{model.equipid}} {{model.name}}</span> ใช่หรือไม่ ? </p>
             <p class="text-warning">
               <small>This action cannot be undone.</small>
             </p>
