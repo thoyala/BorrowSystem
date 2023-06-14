@@ -16,6 +16,7 @@ import { ShowBorrowComponent } from './admin/show-borrow/show-borrow.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { BorrowEquipComponent } from './user/borrow-equip/borrow-equip.component';
 import { BorrowDetailComponent } from './user/borrow-detail/borrow-detail.component';
+import { CartComponent } from './user/cart/cart.component';
 
 const routes: Routes = [
   {path: '' , component: SiteComponent,
@@ -39,7 +40,8 @@ const routes: Routes = [
     children:[
       {path:'borrow-detail',component:BorrowDetailComponent},
       {path: 'borrow-equip',component:BorrowEquipComponent},
-      {path: 'edit-user',component:EditUserComponent}
+      {path: 'edit-user',component:EditUserComponent},
+      {path: 'cart',component:CartComponent},
     ]
 }
 ];

@@ -24,6 +24,7 @@ import { ShowBorrowComponent } from './admin/show-borrow/show-borrow.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { BorrowEquipComponent } from './user/borrow-equip/borrow-equip.component';
 import { BorrowDetailComponent } from './user/borrow-detail/borrow-detail.component';
+import { CartComponent } from './user/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BorrowDetailComponent } from './user/borrow-detail/borrow-detail.compon
     ShowBorrowComponent,
     EditUserComponent,
     BorrowEquipComponent,
-    BorrowDetailComponent
+    BorrowDetailComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

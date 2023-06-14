@@ -1,0 +1,45 @@
+<div class="container-fluid">
+    <h3 style="padding-top: 20px;">รายการยืมอุปกรณ์</h3>
+    <div class="responsive">
+        <table class="table">
+            <thead>
+                <tr style="font-weight: bold;">
+                    <th width="10%">ลำดับ</th>
+                    <th>รูปภาพ</th>
+                    <th>ชื่ออุปกรณ์</th>
+                    <th>รายละเอียด</th>
+                    <th>จำนวนที่มี</th>
+                    <th>จำนวนที่ยืม</th>
+                    <th>การทำงาน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of items; let i = index">
+                    <td>{{i+1}}</td>
+                    <td><img src="http://localhost/borrowsystem_api/images/equip/{{item.picture}}"
+                    alt="" width="auto" height="120px"></td>
+                    <td>{{item.name}}</td>
+                    <td>{{item.detail}}</td>
+                    <td>{{item.qty}}</td>
+                    <td>
+                        <input type="number" max="{{item.qty}}" min="1" value="{{item.quantity}}"
+                        (change)="onSelectQTY($event,i)">
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="removeCart(i)">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <tr>
+                <a [routerLink]="['/user/','borrow-equip']">
+                    <button class="btn btn-success btn_margin mr-3">ทำรายการยืมต่อ</button>
+                </a>
+                <button class="btn btn-primary btn_margin">ยืนยันการยืม</button>
+            </tr>
+        </table>
+    </div>
+</div>
