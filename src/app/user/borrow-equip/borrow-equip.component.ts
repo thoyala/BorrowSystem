@@ -38,6 +38,7 @@ data:any
       this.cartService.cartItems.push(item); //เก็บรายการยืมใน array
     else
       alert('ข้อมูลอุปกรณ์ที่จะยืมซ้ำ')
+      console.log(this.cartService.cartItems)
     
     // ย้ายไปที่ cart component
     this.router.navigate(['/user/','cart'])
