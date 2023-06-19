@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { UploadUserService } from 'src/app/services/upload-user.service';
 import { UserService } from 'src/app/services/user.service';
@@ -11,7 +12,8 @@ import { UserService } from 'src/app/services/user.service';
 export class EditUserComponent implements OnInit{
   constructor(private longinService: LoginService,
     private userService: UserService,
-    private uploadUserService: UploadUserService){}
+    private uploadUserService: UploadUserService,
+    private router:Router){}
     
 
   userData: any
@@ -34,6 +36,7 @@ export class EditUserComponent implements OnInit{
             })
         }
       })
+     this.router.navigate(['user']) 
   }
   hasFile=false
   file!: File
