@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EquipService } from 'src/app/services/equip.service';
 import { UploadEquipService } from 'src/app/services/upload-equip.service';
 declare const $: any;
@@ -10,7 +11,8 @@ declare const $: any;
 })
 export class CrudEquipComponent implements OnInit {
   constructor(private equipService: EquipService,
-    private uploadEquipService: UploadEquipService) { }
+    private uploadEquipService: UploadEquipService,
+    private router:Router) { }
 
   model = {
     name: '',
@@ -77,6 +79,7 @@ export class CrudEquipComponent implements OnInit {
             })
         }
         this.ngOnInit()
+        this.router.navigate(['admin/crud-equip'])
       })
   }
 

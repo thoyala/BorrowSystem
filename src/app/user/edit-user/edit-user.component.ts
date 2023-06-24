@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent implements OnInit{
-  constructor(private longinService: LoginService,
+  constructor(private loginService: LoginService,
     private userService: UserService,
     private uploadUserService: UploadUserService,
     private router:Router){}
@@ -18,7 +18,7 @@ export class EditUserComponent implements OnInit{
 
   userData: any
   ngOnInit(): void {
-    this.userData=this.longinService.loginData 
+    this.userData=this.loginService.loginData 
     this.userData.newpassword=''
   }
   formData = new FormData()

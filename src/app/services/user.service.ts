@@ -24,6 +24,7 @@ export class UserService {
   }
   //ลบ
   delete(userid:any){
+    console.log(userid)
     return this.httpClient.delete(this.url + '?userid='+userid)
   }
 }

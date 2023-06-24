@@ -35,10 +35,8 @@
             <td>{{item.address}}</td>
             <td>{{item.telephone}}</td>
             <td>
-              <a href="#editEmployeeModal" class="edit text-success pr-3" data-bs-toggle="modal"><i class="fas fa-edit"
-                  data-bs-toggle="tooltip" title="Edit"></i></a>
               <a href="#deleteEmployeeModal" class="delete text-danger" data-bs-toggle="modal"><i class="fas fa-trash"
-                  data-bs-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                  data-bs-toggle="tooltip" title="Delete" (click)="onDelete(item)">&#xE872;</i></a>
             </td>
           </tr>
         </tbody>
@@ -50,7 +48,7 @@
 <div id="addEmployeeModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form (ngSubmit)="onSave()" [noValidate]="false">
         <div class="modal-header">
           <h4 class="modal-title">เพิ่มข้อมูลผู้ใช้งาน</h4>
           <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
@@ -60,23 +58,27 @@
         <div class="modal-body">
           <div class="form-group">
             <label>ชื่อสกุล</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="name" [(ngModel)]="model.name" />
           </div>
           <div class="form-group">
             <label>ที่อยู่</label>
-            <textarea class="form-control" required></textarea>
+            <textarea class="form-control" required name="address" [(ngModel)]="model.address"></textarea>
           </div>
           <div class="form-group">
             <label>โทรศัพท์</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="telephone" [(ngModel)]="model.telephone" />
           </div>
           <div class="form-group">
             <label>ชื่อผู้ใช้งาน</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="username" [(ngModel)]="model.username" />
           </div>
           <div class="form-group">
             <label>รหัสผ่าน</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="password" [(ngModel)]="model.password" />
+          </div>
+          <div class="form-group">
+            <label>รูปภาพ</label>
+            <input type="file" class="form-control" (change)="onSelectFile($event)"/>
           </div>
         </div>
         <div class="modal-footer">
@@ -91,7 +93,7 @@
 <div id="editEmployeeModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form (ngSubmit)="onEditEmployee">
         <div class="modal-header">
           <h4 class="modal-title">แก้ไขข้อมูลผู้ใช้งาน</h4>
           <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
@@ -101,23 +103,23 @@
         <div class="modal-body">
           <div class="form-group">
             <label>ชื่อสกุล</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="name" [(ngModel)]="model.name" />
           </div>
           <div class="form-group">
             <label>ที่อยู่</label>
-            <textarea class="form-control" required></textarea>
+            <textarea class="form-control" required name="address" [(ngModel)]="model.address"></textarea>
           </div>
           <div class="form-group">
             <label>โทรศัพท์</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="telephone" [(ngModel)]="model.telephone" />
           </div>
           <div class="form-group">
             <label>ชื่อผู้ใช้งาน</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="username" [(ngModel)]="model.username" />
           </div>
           <div class="form-group">
             <label>รหัสผ่าน</label>
-            <input type="text" class="form-control" required />
+            <input type="text" class="form-control" required name="password" [(ngModel)]="model.password" />
           </div>
         </div>
         <div class="modal-footer">
@@ -132,7 +134,7 @@
 <div id="deleteEmployeeModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form>
+      <form (ngSubmit)="onDeleteEmployee()">
         <div class="modal-header">
           <h4 class="modal-title">ลบข้อมูลผู้ใช้งาน</h4>
           <button type="button" class="close" data-bs-dismiss="modal" aria-hidden="true">
@@ -140,7 +142,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>ต้องการลบข้อมูลรายการนี้ใช่หรือไม่ ?</p>
+          <p>ต้องการลบข้อมูลรายการนี้ <span class="text-danger">รหัส {{model.userid}}{{model.name}}</span> ใช่หรือไม่ ?</p>
           <p class="text-warning">
             <small>This action cannot be undone.</small>
           </p>

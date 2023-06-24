@@ -5,20 +5,21 @@
     <div class="col-sm-4">
         <h3>แก้ไขข้อมูล</h3>
         <div class="card">
-            <img src="assets/images/noperson.jfif" class="card-img-top" alt="...">
+            <img src="http://localhost/borrowsystem_api/images/admin/{{adminData.picture}}" class="card-img-top" alt="..." *ngIf="adminData.picture!=''">
+            <img src="assets/images/noperson.jpg.png" class="card-img-top" alt="..." *ngIf="adminData.picture==''">
             <div class="card-body">
-                <form>
+                <form (ngSubmit)="onEditAdmin()">
                     <div class="mb-3">
                       <label class="form-label">รูปภาพใหม่</label>
-                      <input type="file" class="form-control" >
+                      <input type="file" class="form-control" (change)="onSelectFile($event)" >
                     </div>
                     <div class="mb-3">
                       <label class="form-label">รหัสผ่านเดิม</label>
-                      <input type="text" class="form-control" >
+                      <input type="text" class="form-control" name="password" [(ngModel)]="adminData.password" >
                     </div>
                     <div class="mb-3">
                       <label class="form-label">รหัสผ่านใหม่</label>
-                      <input type="password" class="form-control" >
+                      <input type="password" class="form-control" name="newpassword" [(ngModel)]="adminData.newpassword" >
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </form>
